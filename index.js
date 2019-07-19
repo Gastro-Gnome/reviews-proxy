@@ -2,13 +2,30 @@ const express = require('express');
 const path = require('path');
 
 const app = express();
-const port = 3000;
+const port = 3001;
 
 const proxy = require('express-http-proxy');
 
 app.use(express.static(path.join(__dirname, './public')));
-app.use('/reviews', proxy('127.0.0.1:3003'));
-app.use('/photos', proxy('127.0.0.1:3001'));
+app.use('/reviews', proxy('localhost:3000', {
+  proxyReqPathResolver: req => {
+    if(req.url === '/dist/bundle.js') {
+      return req.url;
+    } else {
+      return '/reviews' + req.url
+    }
+  }
+}));
+
+app.use('/photos', proxy('52.90.9.19', {
+  proxyReqPathResolver: req => {
+    if(req.url === '/main.js') {
+      return req.url;
+    } else {
+      return '/photos' + req.url;
+    }
+  }
+}));
 
 app.get('/', (req, res) => {
   res.end();
