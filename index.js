@@ -7,7 +7,7 @@ const port = 3001;
 const proxy = require('express-http-proxy');
 
 app.use(express.static(path.join(__dirname, './public')));
-app.use('/reviews', proxy('localhost:3000', {
+app.use('/reviews', proxy('13.52.99.182:1337', {
   proxyReqPathResolver: req => {
     if(req.url === '/dist/bundle.js') {
       return req.url;
@@ -34,3 +34,4 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
   console.log(`Reviews server is running on port ${port}`);
 });
+do
