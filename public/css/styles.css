@@ -4,8 +4,11 @@
 }
 
 .content-wrapper {
+  display: grid;
   color: #F5F5F5;
-  width: 990px;
+  width: 100%;
+  height: 107px;
+  justify-items: center;
 }
 
 .header {
