@@ -60,7 +60,7 @@
 .review-data {
   display: grid;
   grid-template-columns: 660px 330px;
-  grid-template-rows: auto auto auto;
+  grid-template-rows: auto auto auto auto auto;
 }
 
 .reviews {
@@ -68,4 +68,23 @@
   grid-column-end: 1;
   grid-row-start: 2;
   grid-row-end: 3;
+}
+
+.bottom-reviews {
+  width: 630px;
+  grid-column-start: 1;
+  grid-column-end: 1;
+  grid-row-start: 4;
+  grid-row-end: 4;
+}
+
+.body-wrapper {
+  transform: translateX(12px);
+}
+
+.footer {
+  width: 1600px;
+  align-items: center;
+  grid-row-start: 5;
+  grid-row-end: 5;  
 }
