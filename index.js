@@ -7,12 +7,12 @@ const port = 3001;
 const proxy = require('express-http-proxy');
 
 app.use(express.static(path.join(__dirname, './public')));
-app.use('/reviews', proxy('13.52.99.182:1337', {
+app.use('/:businessId/reviews', proxy('13.52.99.182:1337', {
   proxyReqPathResolver: req => {
     if(req.url === '/dist/bundle.js') {
-      return req.url;
+      return `${req.params.businessId}${req.url}`;
     } else {
-      return '/reviews' + req.url
+      return `${req.url}/reviews`;
     }
   }
 }));
